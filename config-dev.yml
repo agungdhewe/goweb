@@ -1,0 +1,29 @@
+port: 8700
+
+favicon: "myfavicon.ico"
+title: "My Home Page"
+
+database:
+  server: "<your database server>"
+  name: "<your database name>"
+  username: "<your database username>"
+  password: "<your database password>"
+
+cookie: 
+  secure: true
+  lifetime: 24
+
+template:
+  cached: false
+  dir: "data/template"  
+  options:
+  - missingkey=error
+
+application:
+  pagedir: "data/pages"
+  contentdir: "data/content"
+
+logging:
+  enabled: true
+
+  

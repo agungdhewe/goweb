@@ -1,0 +1,20 @@
+{{template "layoutdasar" .}}
+
+{{define "title"}}
+	Home - {{.Title}}
+{{end}}
+
+
+
+{{define "pagestyle"}}
+		<link rel="stylesheet" href="/asset/data/pages/home/home.css">
+{{end}}
+
+
+{{define "pagecontent"}}
+ini content home<br>
+<br>
+Variable dari controller:<br>
+Nama: {{.Data.Nama}}<br>
+Alamat: {{.Data.Alamat}}<br>
+{{end}}
