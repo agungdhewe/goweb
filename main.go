@@ -59,13 +59,15 @@ func Router(mux *chi.Mux) error {
 
 	fgweb.Get(mux, "/", Home)
 	fgweb.Get(mux, "/about", About)
+	fgweb.Post(mux, "/subscribe", Subscribe)
 
 	return nil
 }
 
 type User struct {
-	Nama   string
-	Alamat string
+	Nama    string
+	Alamat  string
+	Message string
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -83,5 +85,23 @@ func About(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	pv := ctx.Value(appsmodel.PageVariableKeyName).(*appsmodel.PageVariable)
 	pv.PageName = "about"
+	defaulthandlers.SimplePageHandler(pv, w, r)
+}
+
+func Subscribe(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	pv := ctx.Value(appsmodel.PageVariableKeyName).(*appsmodel.PageVariable)
+	pv.PageName = "home"
+	data := &User{
+		Nama:   "Agung",
+		Alamat: "Tangerang Raya",
+	}
+
+	email := r.FormValue("email")
+	if email != "" {
+		data.Message = "Thank you for subscribing " + email
+	}
+
+	pv.Data = data
 	defaulthandlers.SimplePageHandler(pv, w, r)
 }

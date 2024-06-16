@@ -12,9 +12,29 @@
 
 
 {{define "pagecontent"}}
-ini content home<br>
-<br>
-Variable dari controller:<br>
-Nama: {{.Data.Nama}}<br>
-Alamat: {{.Data.Alamat}}<br>
+
+	ini content home<br>
+	<br>
+	Variable dari controller:<br>
+	Nama: {{.Data.Nama}}<br>
+	Alamat: {{.Data.Alamat}}<br>
+
+
+
+	<hr>
+
+
+	{{ if ne .Data.Message "" }}
+		{{.Data.Message}}<br>
+	{{else}}
+		<form method="post" action="/subscribe">
+			<label for="email">Subscribe</label>
+			<input type="text" id="email" name="email">
+			<input type="submit" value="Submit">
+		</form>
+	{{end}}
+
+
 {{end}}
+
+
